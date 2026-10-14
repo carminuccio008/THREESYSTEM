@@ -443,7 +443,7 @@ a,button{transition:opacity .25s var(--ease)}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-/* ===== SYSTEM AI ===== */
+/* ===== Donato AI ===== */
 #sysai{position:fixed;inset:0;z-index:60;pointer-events:none}
 #sysai.ai-hide{display:none}
 .ai-orb{pointer-events:auto;position:fixed;right:18px;bottom:calc(88px + env(safe-area-inset-bottom,0px));width:66px;height:66px;border-radius:50%;display:grid;place-items:center;overflow:hidden;
@@ -481,6 +481,16 @@ a,button{transition:opacity .25s var(--ease)}
 .ai-in input:focus{box-shadow:0 0 0 3px rgba(10,132,255,.35)}
 .ai-in button{width:46px;height:46px;border-radius:50%;background:var(--btn);color:var(--btnfg);font-size:20px;display:grid;place-items:center;transition:transform .4s var(--spring)}
 .ai-in button:active{transform:scale(.9)}
+
+/* Donato AI: goccia d'acqua, corde nere */
+.ai-orb{width:50px;height:50px;right:18px;bottom:calc(92px + env(safe-area-inset-bottom,0px));
+ background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.95) 0,rgba(255,255,255,.4) 11%,transparent 28%),radial-gradient(circle at 72% 88%,rgba(255,255,255,.4),transparent 42%),rgba(255,255,255,.3);
+ border:1px solid rgba(255,255,255,.7);
+ box-shadow:inset 0 3px 6px rgba(255,255,255,.8),inset 0 -7px 12px rgba(110,160,255,.3),0 10px 24px -8px rgba(0,0,0,.45);
+ -webkit-backdrop-filter:blur(3px) saturate(190%) brightness(1.1);backdrop-filter:blur(3px) saturate(190%) brightness(1.1)}
+.ai-blob{opacity:.5;filter:blur(4px)}
+.ai-orb svg{width:34px;height:34px;filter:none}
+.ai-orb g{stroke:#000;stroke-width:2.6}
 </style>
 </head>
 <body>
@@ -1868,9 +1878,9 @@ document.addEventListener("submit",function(e){
 });
 
 
-/* ---------- SYSTEM AI (assistente) ---------- */
+/* ---------- Donato AI (assistente) ---------- */
 var AI_URL="/api/system-ai",AI={busy:false,hist:[],amp:3,tgt:3};
-var AI_HELLO="Ciao, sono SYSTEM AI. Posso cercare prodotti, riempire il carrello, controllare un ordine e guidarti nel negozio. Cosa ti serve?";
+var AI_HELLO="Ciao, sono Donato AI. Posso cercare prodotti, riempire il carrello, controllare un ordine e guidarti nel negozio. Cosa ti serve?";
 var AI_CHIPS=["Consigliami un prodotto","Dov'è il mio ordine?","Spedizioni e resi","Mostrami il carrello"];
 function aiCtx(){
   var c=S.settings;
@@ -1953,8 +1963,8 @@ function aiToggle(on){
 function aiInit(){
   var el=document.createElement("div");el.id="sysai";
   el.innerHTML='<div class="ai-veil"></div>'+
-   '<button class="ai-orb" aria-label="Apri SYSTEM AI"><span class="ai-blob"></span><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2.3"><path class="aw"/><path class="aw" opacity=".7"/><path class="aw" opacity=".45"/></g></svg></button>'+
-   '<section class="ai-panel glass" role="dialog" aria-label="SYSTEM AI"><div class="ai-hd"><i></i>SYSTEM AI<button class="ai-x" aria-label="Chiudi">×</button></div><div class="ai-log" aria-live="polite"></div><div class="ai-chips"></div><form class="ai-in"><input type="text" maxlength="600" placeholder="Chiedi qualsiasi cosa…" aria-label="Messaggio"><button aria-label="Invia">↑</button></form></section>';
+   '<button class="ai-orb" aria-label="Apri Donato AI"><span class="ai-blob"></span><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2.3"><path class="aw"/><path class="aw" opacity=".7"/><path class="aw" opacity=".45"/></g></svg></button>'+
+   '<section class="ai-panel glass" role="dialog" aria-label="Donato AI"><div class="ai-hd"><i></i>Donato AI<button class="ai-x" aria-label="Chiudi">×</button></div><div class="ai-log" aria-live="polite"></div><div class="ai-chips"></div><form class="ai-in"><input type="text" maxlength="600" placeholder="Chiedi qualsiasi cosa…" aria-label="Messaggio"><button aria-label="Invia">↑</button></form></section>';
   document.body.appendChild(el);
   aiAdd("a",AI_HELLO);
   var ch=el.querySelector(".ai-chips");
